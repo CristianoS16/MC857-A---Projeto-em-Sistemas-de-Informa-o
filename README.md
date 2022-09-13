@@ -1,3 +1,13 @@
+# Equipe Datassauros
+
+| Nome                       | RA     |
+| -------------------------- | ------ |
+| Artur Abreu                | 231713 |
+| Cristiano Sampaio Pinheiro | 256352 |
+| George Gigilas Junior      | 216741 |
+| Jhonatan Cléto             | 256444 |
+| Mylena Roberta dos Santos  | 222687 |
+
 # Exemplo Simples de Uso no HL7 FHIR 
 
 ## Setup
