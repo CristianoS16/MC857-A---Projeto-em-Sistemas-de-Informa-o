@@ -1,0 +1,33 @@
+{
+  "resourceType": "Patient",
+  "name": [
+    {
+      "use": "official",
+      "given": ["Brontossauro"],
+      "family": "Brontosaurus"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "2022-09-13",
+  "telecom": [
+    {
+      "value": "40028922",
+      "use": "mobile",
+      "system": "phone"
+    },
+    {
+      "system": "email",
+      "value": "bronto@dac.unicamp.br"
+    }
+  ],
+  "address": [
+    {
+      "line": [
+        "1251, Av. Albert Einstein"
+      ],
+      "city": "Campinas",
+      "state": "São Paulo",
+      "postalCode": "13083-852"
+    }
+  ]
+}
