@@ -71,8 +71,8 @@ As bases usadas devem esta de acordo com o os padões do OpenEHR e possibilitar 
 
 ## OpenEHR: Modelo e Armazenamento de Dados
 
->[Demographic Information Model openEHR](https://specifications.openehr.org/releases/RM/latest/demographic.html) EXCLUIR
-
+É necessário reunir especialistas na área de saúde para modelar e configurar a implementação do openEHR de acordo com as necessidades do sistema. Em todo caso, o modelo vai ser construído em cima do modelo de referência do openEHR, que permite uma grande robustez do sistema, principalmente para o armazenamento dos dados.
+Uma vez construído, o modelo será bastante poderoso. Será então necessário facilitar sua comunicação com os outros componentes do sistema, o que poderá ser feito através do FHIR. Mais detalhes sobre isso se encontram na próxima seção.
 
 [Patient Archetype OpenEHR](https://ckm.openehr.org/ckm/archetypes/1013.1.821/mindmap)
 
@@ -85,6 +85,16 @@ https://stackoverflow.com/questions/25449018/how-is-openehr-supposed-to-be-used
 ## Comunicação entre OpenEHR DB e HL7 FHIR
 
 Um dos maiores desafios da integração e que ainda não há soluções prontas para fazer a transcrição entre OpenEHR e FHIR. O software deve ser desenvolvido sobre medida ou desenvolver um mecanismo de integração proprietário.
+
+Diversos autores e usuários dessas tecnologias afirmam que é muito vantajoso integrar os dois. Enquanto o openEHR é um sistema poderoso para armazenar os dados de forma consistente e permanente, o FHIR é ótimo para transferência de dados e uso em APIs. Seguem algumas formas encontradas para uso integrado dos dois:
+
+![FHIR and openEHR integration][assets/FHIR+openEHR.png]
+
+Pelo que foi pesquisado, são 4 as formas mais utilizadas:
++ Facade: utilizar um banco de dados segundo o padrão openEHR e realizar operações sobre ele com o FHIR e com próprio openEHR. O artifício que permite o uso do FHIR é um componente de tradução entre os dois padrões. Essa forma é interessante pois concentra tudo em um único banco de dados, combinando as vantagens de cada padrão.
++ Message Broker: uma ideia que funciona melhor na teoria do que na prática consiste em utilizar message brokers (ou tradutores de padrões) para possibilitar que os padrões se comuniquem. Porém, não parece muito vantajoso ter 2 bancos de dados e com modelos adotados diferentes.
++ Sync Agent: consiste em ter dois bancos de dados, um para cada modelo, e utilizar um "agente sincronizador" para manter os dois atualizados. Novamente, não parece interessante guardar a mesma informação em dois bancos de dados diferentes.
++ Sharded: essa implementação pode ser interessante, pois consiste em ter um banco de dados para cada padrão, de acordo com o padrão mais adequado para cada tipo de dado. Por exemplo, pode-se utilizar o openEHR para guardar dados de exames dos pacientes e o FHIR para guardar dados administrativos
 
 [FHIR + openEHR — 2022](https://medium.com/@alastairallen/fhir-openehr-2022-53716f837340)
 
