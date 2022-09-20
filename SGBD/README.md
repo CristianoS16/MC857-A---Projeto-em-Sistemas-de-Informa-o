@@ -85,6 +85,8 @@ Uma vez construído, o modelo será bastante poderoso. Será então necessário 
 
 [openEHR examples](https://openehr.atlassian.net/wiki/spaces/healthmod/pages/2949213/The+openEHR+Approach)
 
+[ehrbase](https://github.com/ehrbase/ehrbase)
+
 https://stackoverflow.com/questions/25449018/how-is-openehr-supposed-to-be-used
 
 ## Comunicação entre OpenEHR DB e HL7 FHIR
