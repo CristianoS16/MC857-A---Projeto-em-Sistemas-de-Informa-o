@@ -87,6 +87,8 @@ Uma vez construído, o modelo será bastante poderoso. Será então necessário 
 
 [ehrbase](https://github.com/ehrbase/ehrbase)
 
+[openEHR with Java](https://github.com/wware/openehr-java)
+
 [openEHR with Django](https://github.com/openhealthcare/django-openehr)
 
 [openEHR with Python and MongoDB](https://github.com/crs4/pyEHR)
