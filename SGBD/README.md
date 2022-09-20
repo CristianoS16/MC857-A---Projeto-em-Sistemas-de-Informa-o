@@ -71,7 +71,8 @@ As bases usadas devem esta de acordo com o os padões do OpenEHR e possibilitar 
 
 ## OpenEHR: Modelo e Armazenamento de Dados
 
-É necessário reunir especialistas na área de saúde para modelar e configurar a implementação do openEHR de acordo com as necessidades do sistema. Em todo caso, o modelo vai ser construído em cima do modelo de referência do openEHR, que permite uma grande robustez do sistema, principalmente para o armazenamento dos dados.
+É necessário reunir especialistas na área de saúde para modelar e configurar a implementação do openEHR de acordo com as necessidades do sistema. Em todo caso, o modelo vai ser construído em cima do modelo de referência do openEHR, que permite uma grande robustez do sistema, principalmente para o armazenamento dos dados. Além de todo esse ferramental, o openEHR também possui uma query language (similar a um SQL), que otimiza a busca por informações nesse banco de dados.
+
 Uma vez construído, o modelo será bastante poderoso. Será então necessário facilitar sua comunicação com os outros componentes do sistema, o que poderá ser feito através do FHIR. Mais detalhes sobre isso se encontram na próxima seção.
 
 [Patient Archetype OpenEHR](https://ckm.openehr.org/ckm/archetypes/1013.1.821/mindmap)
