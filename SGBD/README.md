@@ -83,6 +83,8 @@ Uma vez construído, o modelo será bastante poderoso. Será então necessário 
 
 [openEHR Skeleton](https://github.com/ppazos/openEHR-skeleton)
 
+[openEHR examples](https://openehr.atlassian.net/wiki/spaces/healthmod/pages/2949213/The+openEHR+Approach)
+
 https://stackoverflow.com/questions/25449018/how-is-openehr-supposed-to-be-used
 
 ## Comunicação entre OpenEHR DB e HL7 FHIR
