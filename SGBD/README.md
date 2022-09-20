@@ -81,6 +81,8 @@ Uma vez construído, o modelo será bastante poderoso. Será então necessário 
 
 [EHRbase](https://ehrbase.org/)
 
+[openEHR Skeleton](https://github.com/ppazos/openEHR-skeleton)
+
 https://stackoverflow.com/questions/25449018/how-is-openehr-supposed-to-be-used
 
 ## Comunicação entre OpenEHR DB e HL7 FHIR
