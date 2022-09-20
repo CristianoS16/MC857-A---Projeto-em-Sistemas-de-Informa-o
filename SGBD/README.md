@@ -88,7 +88,7 @@ Um dos maiores desafios da integração e que ainda não há soluções prontas 
 
 Diversos autores e usuários dessas tecnologias afirmam que é muito vantajoso integrar os dois. Enquanto o openEHR é um sistema poderoso para armazenar os dados de forma consistente e permanente, o FHIR é ótimo para transferência de dados e uso em APIs. Seguem algumas formas encontradas para uso integrado dos dois:
 
-![FHIR and openEHR integration][assets/FHIR+openEHR.png]
+![FHIR and openEHR integration](assets/FHIR+openEHR.png)
 
 Pelo que foi pesquisado, são 4 as formas mais utilizadas:
 + Facade: utilizar um banco de dados segundo o padrão openEHR e realizar operações sobre ele com o FHIR e com próprio openEHR. O artifício que permite o uso do FHIR é um componente de tradução entre os dois padrões. Essa forma é interessante pois concentra tudo em um único banco de dados, combinando as vantagens de cada padrão.
