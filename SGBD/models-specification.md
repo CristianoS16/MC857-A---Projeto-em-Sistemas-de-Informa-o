@@ -58,7 +58,7 @@ Patient observations including laboratory tests.
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
 | `Date`              | Date	iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the observation was performed. |
-| `Patient`              | UUID | Foreign key to the Patient. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
 | `Encounter`              | UUID | Foreign key to the Encounter where the observation was performed. |
 | `Category`              | String | Observation category. |
 | `Code`              | String | Observation or Lab code from LOINC |
@@ -177,15 +177,15 @@ Patient medication data.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Start`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the medication was prescribed. |
-| `Stop`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the prescription ended, if applicable. |
-| `Patient`              | UUID | Foreign key to the Patient. |
+| `Start (Order start date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the medication was prescribed. |
+| `Stop (Order stop date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the prescription ended, if applicable. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
 | `Encounter`              | UUID | Foreign key to the Encounter where the medication was prescribed. |
-| `Code`              | String | Medication code from RxNorm. |
-| `Description	`              | String | Description of the medication. |
+| `Code (Name - Medication detail)`              | String | Medication code from RxNorm. |
+| `Description (Description - Medication detail)	`              | String | Description of the medication. |
 | `Dispenses`              | Numeric | The number of times the prescription was filled. |
-| `ReasonCode`              | String | Diagnosis code from SNOMED-CT specifying why this medication was prescribed. |
-| `ReasonDescription`              | String | Description of the reason code. |
+| `ReasonCode (Clinical indication)`              | String | Diagnosis code from SNOMED-CT specifying why this medication was prescribed. |
+| `ReasonDescription (Clinical indication)`              | String | Description of the reason code. |
 
 ### Example in JSON Format:
 
