@@ -59,7 +59,7 @@ Patient observations including laboratory tests.
 |:-------------------------|:---------|:----------------------|
 | `Date`              | Date	iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the observation was performed. |
 | `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
-| `Encounter`              | UUID | Foreign key to the Encounter where the observation was performed. |
+| `Encounter (Episode ID)`              | UUID | Foreign key to the Encounter where the observation was performed. |
 | `Category`              | String | Observation category. |
 | `Code`              | String | Observation or Lab code from LOINC |
 | `Description`              | String | Description of the observation or lab. |
@@ -99,15 +99,15 @@ Patient encounter data.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Id`              | UUID | Primary Key. Unique Identifier of the encounter. |
-| `Start`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter started. |
-| `Stop`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter concluded. |
-| `Patient`              | UUID | Foreign key to the Patient. |
-| `EncounterClass (Category)`              | String | The class of the encounter, such as `ambulatory`, `emergency`, `inpatient`, `wellness`, or `urgentcare` |
+| `Id (Episode ID)`              | UUID | Primary Key. Unique Identifier of the encounter. |
+| `Start (Admission date)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter started. |
+| `Stop (Separation date)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter concluded. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
+| `EncounterClass (Admission category)`              | String | The class of the encounter, such as `ambulatory`, `emergency`, `inpatient`, `wellness`, or `urgentcare` |
 | `Code`              | String | Encounter code from SNOMED-CT |
-| `Description`              | String | Description of the type of encounter. |
-| `ReasonCode	`              | String | Diagnosis code from SNOMED-CT, only if this encounter targeted a specific condition. |
-| `ReasonDescription	`              | String | Description of the reason code. |
+| `Description (Comment)`              | String | Description of the type of encounter. |
+| `ReasonCode	(Reason for admission)`              | String | Diagnosis code from SNOMED-CT, only if this encounter targeted a specific condition. |
+| `ReasonDescription (Reason for admission)`              | String | Description of the reason code. |
 
 ### Example in JSON Format:
 
@@ -143,8 +143,8 @@ Patient conditions or diagnoses.
 |:-------------------------|:---------|:----------------------|
 | `Start (Date/time of onset)`              | Date (`YYYY-MM-DD`) | The date the condition was diagnosed. |
 | `Stop (Date/time of resolution)`              | Date (`YYYY-MM-DD`) | The date the condition resolved, if applicable. |
-| `Patient`              | UUID | Foreign key to the Patient. |
-| `Encounter`              | UUID | Foreign key to the Encounter when the condition was diagnosed. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
+| `Encounter (Episode ID)`              | UUID | Foreign key to the Encounter when the condition was diagnosed. |
 | `Code (Problem/Diagnosis name)`              | String | Diagnosis code from SNOMED-CT |
 | `Description (Clinical description)`              | String | Description of the condition. |
 
@@ -180,7 +180,7 @@ Patient medication data.
 | `Start (Order start date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the medication was prescribed. |
 | `Stop (Order stop date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the prescription ended, if applicable. |
 | `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
-| `Encounter`              | UUID | Foreign key to the Encounter where the medication was prescribed. |
+| `Encounter (Episode ID)`              | UUID | Foreign key to the Encounter where the medication was prescribed. |
 | `Code (Name - Medication detail)`              | String | Medication code from RxNorm. |
 | `Description (Description - Medication detail)	`              | String | Description of the medication. |
 | `Dispenses`              | Numeric | The number of times the prescription was filled. |
@@ -221,20 +221,20 @@ Patient allergy data.
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
 | `Start (Onset of Reaction)`              | Date (`YYYY-MM-DD`) | The date the allergy was diagnosed. |
-| `Stop`              | Date (`YYYY-MM-DD`) | The date the allergy ended, if applicable. |
-| `Patient`              | UUID | Foreign key to the Patient. |
-| `Encounter`              | UUID | Foreign key to the Encounter when the allergy was diagnosed. |
-| `Code`              | String | Allergy code |
-| `System`              | String | Terminology system of the Allergy code. `RxNorm` if this is a medication allergy, otherwise `SNOMED-CT`. |
-| `Description`              | String | Description of the `Allergy` |
+| `Stop (Duration of Reaction)`              | Date (`YYYY-MM-DD`) | The date the allergy ended, if applicable. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
+| `Encounter (Episode ID)`              | UUID | Foreign key to the Encounter when the allergy was diagnosed. |
+| `Code (Substance)`              | String | Allergy code |
+| `System (*)`              | String | Terminology system of the Allergy code. `RxNorm` if this is a medication allergy, otherwise `SNOMED-CT`. |
+| `Description (Comment)`              | String | Description of the `Allergy` |
 | `Type (Reaction Type)`              | String | Identify entry as an `allergy` or `intolerance`. |
-| `Category (Exposure Description)`              | String | Identify the category as `drug`, `medication`, `food`, or `environment`. |
+| `Category (Category)`              | String | Identify the category as `drug`, `medication`, `food`, or `environment`. |
 | `Reaction1 (Manifestation)`              | String | Optional SNOMED code of the patients reaction. |
 | `Description1 (Reaction Description)`              | String | Optional description of the `Reaction1` SNOMED code. |
-| `Severity1`              | String | Severity of the reaction: `MILD`, `MODERATE`, or `SEVERE`. |
-| `Reaction2 (Reaction Description)`              | String | Optional SNOMED code of the patients second reaction. |
-| `Description2`              | String | Optional description of the `Reaction2 (Manifestation)` SNOMED code. |
-| `Severity2`              | String | Severity of the second reaction: `MILD`, `MODERATE`, or `SEVERE`. |
+| `Severity1 (Criticality)`              | String | Severity of the reaction: `MILD`, `MODERATE`, or `SEVERE`. |
+| `Reaction2 (Manifestation)`              | String | Optional SNOMED code of the patients second reaction. |
+| `Description2 (Reaction Description)`              | String | Optional description of the `Reaction2 (Manifestation)` SNOMED code. |
+| `Severity2 (Criticality)`              | String | Severity of the second reaction: `MILD`, `MODERATE`, or `SEVERE`. |
 
 ### Example in JSON Format:
 
@@ -274,14 +274,14 @@ Patient procedure data including surgeries.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Start (Scheduled data/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the procedure was performed. |
-| `Stop (Final end data/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'` | The date and time the procedure was completed, if applicable. |
-| `Patient`              | UUID | Foreign key to the Patient. |
-| `Encounter`              | UUID | Foreign key to the Encounter where the procedure was performed. |
+| `Start (Scheduled date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the procedure was performed. |
+| `Stop (Final end date/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'` | The date and time the procedure was completed, if applicable. |
+| `Patient (Usage identifier)`              | UUID | Foreign key to the Patient. |
+| `Encounter (Episode ID)`              | UUID | Foreign key to the Encounter where the procedure was performed. |
 | `Code (Procedure name)`              | String | Procedure code from SNOMED-CT |
 | `Description (Description)`              | String | Description of the procedure. |
-| `ReasonCode`              | String | Diagnosis code from SNOMED-CT specifying why this procedure was performed. |
-| `ReasonDescription (Reason)`              | String | Description of the reason code. |
+| `ReasonCode (Indication)`              | String | Diagnosis code from SNOMED-CT specifying why this procedure was performed. |
+| `ReasonDescription (Indication)`              | String | Description of the reason code. |
 
 ### Example in JSON Format:
 
