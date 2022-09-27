@@ -103,7 +103,7 @@ Patient encounter data.
 | `Start`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter started. |
 | `Stop`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the encounter concluded. |
 | `Patient`              | UUID | Foreign key to the Patient. |
-| `EncounterClass`              | String | The class of the encounter, such as `ambulatory`, `emergency`, `inpatient`, `wellness`, or `urgentcare` |
+| `EncounterClass (Category)`              | String | The class of the encounter, such as `ambulatory`, `emergency`, `inpatient`, `wellness`, or `urgentcare` |
 | `Code`              | String | Encounter code from SNOMED-CT |
 | `Description`              | String | Description of the type of encounter. |
 | `ReasonCode	`              | String | Diagnosis code from SNOMED-CT, only if this encounter targeted a specific condition. |
@@ -141,12 +141,12 @@ Patient conditions or diagnoses.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Start`              | Date (`YYYY-MM-DD`) | The date the condition was diagnosed. |
-| `Stop`              | Date (`YYYY-MM-DD`) | The date the condition resolved, if applicable. |
+| `Start (Date/time of onset)`              | Date (`YYYY-MM-DD`) | The date the condition was diagnosed. |
+| `Stop (Date/time of resolution)`              | Date (`YYYY-MM-DD`) | The date the condition resolved, if applicable. |
 | `Patient`              | UUID | Foreign key to the Patient. |
 | `Encounter`              | UUID | Foreign key to the Encounter when the condition was diagnosed. |
-| `Code`              | String | Diagnosis code from SNOMED-CT |
-| `Description (Status)`              | String | Description of the condition. |
+| `Code (Problem/Diagnosis name)`              | String | Diagnosis code from SNOMED-CT |
+| `Description (Clinical description)`              | String | Description of the condition. |
 
 ### Example in JSON Format:
 
@@ -220,20 +220,20 @@ Patient allergy data.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Start`              | Date (`YYYY-MM-DD`) | The date the allergy was diagnosed. |
+| `Start (Onset of Reaction)`              | Date (`YYYY-MM-DD`) | The date the allergy was diagnosed. |
 | `Stop`              | Date (`YYYY-MM-DD`) | The date the allergy ended, if applicable. |
 | `Patient`              | UUID | Foreign key to the Patient. |
 | `Encounter`              | UUID | Foreign key to the Encounter when the allergy was diagnosed. |
 | `Code`              | String | Allergy code |
 | `System`              | String | Terminology system of the Allergy code. `RxNorm` if this is a medication allergy, otherwise `SNOMED-CT`. |
 | `Description`              | String | Description of the `Allergy` |
-| `Type`              | String | Identify entry as an `allergy` or `intolerance`. |
-| `Category`              | String | Identify the category as `drug`, `medication`, `food`, or `environment`. |
-| `Reaction1`              | String | Optional SNOMED code of the patients reaction. |
-| `Description1`              | String | Optional description of the `Reaction1` SNOMED code. |
+| `Type (Reaction Type)`              | String | Identify entry as an `allergy` or `intolerance`. |
+| `Category (Exposure Description)`              | String | Identify the category as `drug`, `medication`, `food`, or `environment`. |
+| `Reaction1 (Manifestation)`              | String | Optional SNOMED code of the patients reaction. |
+| `Description1 (Reaction Description)`              | String | Optional description of the `Reaction1` SNOMED code. |
 | `Severity1`              | String | Severity of the reaction: `MILD`, `MODERATE`, or `SEVERE`. |
-| `Reaction2`              | String | Optional SNOMED code of the patients second reaction. |
-| `Description2`              | String | Optional description of the `Reaction2` SNOMED code. |
+| `Reaction2 (Reaction Description)`              | String | Optional SNOMED code of the patients second reaction. |
+| `Description2`              | String | Optional description of the `Reaction2 (Manifestation)` SNOMED code. |
 | `Severity2`              | String | Severity of the second reaction: `MILD`, `MODERATE`, or `SEVERE`. |
 
 ### Example in JSON Format:
@@ -274,14 +274,14 @@ Patient procedure data including surgeries.
 
 | Attribute                | Type     | Description           |
 |:-------------------------|:---------|:----------------------|
-| `Start`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the procedure was performed. |
-| `Stop`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'` | The date and time the procedure was completed, if applicable. |
+| `Start (Scheduled data/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'`) | The date and time the procedure was performed. |
+| `Stop (Final end data/time)`              | iso8601 UTC Date (`yyyy-MM-dd'T'HH:mm'Z'` | The date and time the procedure was completed, if applicable. |
 | `Patient`              | UUID | Foreign key to the Patient. |
 | `Encounter`              | UUID | Foreign key to the Encounter where the procedure was performed. |
-| `Code (Report ID)`              | String | Procedure code from SNOMED-CT |
-| `Description (Status)`              | String | Description of the procedure. |
+| `Code (Procedure name)`              | String | Procedure code from SNOMED-CT |
+| `Description (Description)`              | String | Description of the procedure. |
 | `ReasonCode`              | String | Diagnosis code from SNOMED-CT specifying why this procedure was performed. |
-| `ReasonDescription`              | String | Description of the reason code. |
+| `ReasonDescription (Reason)`              | String | Description of the reason code. |
 
 ### Example in JSON Format:
 
